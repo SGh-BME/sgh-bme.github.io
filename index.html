@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sima Ghafoori | Neurorobotics Researcher</title>
+<style>
+/* ─── Reset & Variables ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;
+  --blue:#1e4db7;
+  --blue2:#2563eb;
+  --accent:#06b6d4;
+  --accent2:#8b5cf6;
+  --text:#0f172a;
+  --muted:#64748b;
+  --light:#f8fafc;
+  --border:#e2e8f0;
+  --white:#ffffff;
+  --card-shadow:0 4px 24px rgba(0,0,0,0.07);
+  --card-hover:0 12px 40px rgba(30,77,183,0.15);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+/* ─── NAV ───────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  padding:0 2rem;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(226,232,240,0.8);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:700;font-size:1.05rem;color:var(--navy);letter-spacing:-.01em;text-decoration:none}
+.nav-logo span{color:var(--blue2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;position:relative;transition:color .2s;
+  padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;
+  background:var(--blue2);transform:scaleX(0);transition:transform .25s;border-radius:1px;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--blue2)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cv{
+  font-size:.8rem;font-weight:600;color:var(--white);background:var(--blue2);
+  padding:.4rem 1rem;border-radius:6px;text-decoration:none;transition:background .2s,transform .15s;
+}
+.nav-cv:hover{background:var(--blue);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+
+/* ─── HERO ──────────────────────────────────────────── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--navy) 0%,#1a2f5e 50%,#0e3460 100%);
+  position:relative;overflow:hidden;padding:6rem 2rem 4rem;
+}
+.hero-bg-circles{position:absolute;inset:0;pointer-events:none}
+.hero-bg-circles span{
+  position:absolute;border-radius:50%;opacity:.07;
+  background:radial-gradient(circle,var(--accent),transparent);
+}
+.hero-bg-circles span:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+.hero-bg-circles span:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px;background:radial-gradient(circle,var(--accent2),transparent)}
+.hero-bg-circles span:nth-child(3){width:200px;height:200px;top:40%;left:40%;background:radial-gradient(circle,var(--blue2),transparent);opacity:.12}
+
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(6,182,212,.3);
+  padding:.35rem .9rem;border-radius:100px;margin-bottom:1.5rem;
+}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+
+.hero-h1{
+  font-size:3.4rem;font-weight:800;color:var(--white);line-height:1.1;
+  letter-spacing:-.03em;margin-bottom:1rem;
+}
+.hero-h1 .name-accent{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.65);margin-bottom:.5rem;font-weight:400}
+.hero-affil{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:2rem}
+
+.hero-bio{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:2.5rem;max-width:480px}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.88rem;font-weight:600;color:var(--white);
+  background:var(--blue2);padding:.75rem 1.6rem;border-radius:8px;
+  text-decoration:none;transition:all .25s;border:2px solid var(--blue2);
+}
+.btn-primary:hover{background:transparent;color:var(--white);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.4)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.88rem;font-weight:600;color:rgba(255,255,255,.8);
+  border:2px solid rgba(255,255,255,.25);padding:.75rem 1.6rem;border-radius:8px;
+  text-decoration:none;transition:all .25s;
+}
+.btn-outline:hover{border-color:rgba(255,255,255,.7);color:var(--white);transform:translateY(-2px)}
+
+.hero-social{display:flex;gap:.75rem;margin-top:2rem}
+.hero-social a{
+  width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.6);text-decoration:none;font-size:.8rem;font-weight:600;
+  transition:all .2s;
+}
+.hero-social a:hover{border-color:var(--accent);color:var(--accent);background:rgba(6,182,212,.08)}
+
+/* Hero right side – stat cards */
+.hero-right{display:flex;flex-direction:column;gap:1rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:1.4rem;backdrop-filter:blur(8px);
+  transition:all .3s;
+}
+.stat-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px)}
+.stat-card .num{font-size:2rem;font-weight:800;color:var(--white);line-height:1}
+.stat-card .num span{font-size:1.2rem;color:var(--accent)}
+.stat-card .label{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.3rem;font-weight:500}
+
+.research-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:1.4rem;backdrop-filter:blur(8px);
+}
+.research-card h3{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.research-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.research-tags span{
+  font-size:.75rem;font-weight:500;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.7);padding:.3rem .75rem;border-radius:100px;
+}
+
+/* ─── SECTION BASE ──────────────────────────────────── */
+.section{padding:6rem 2rem}
+.section:nth-child(even){background:var(--light)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-header{margin-bottom:3.5rem}
+.section-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue2);margin-bottom:.6rem;
+}
+.section-title{font-size:2.2rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
+.section-line{
+  width:48px;height:4px;background:linear-gradient(90deg,var(--blue2),var(--accent));
+  border-radius:2px;margin-top:1rem;
+}
+
+/* ─── FADE IN ────────────────────────────────────────── */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.fade-in.visible{opacity:1;transform:none}
+.fade-in-delay-1{transition-delay:.1s}
+.fade-in-delay-2{transition-delay:.2s}
+.fade-in-delay-3{transition-delay:.3s}
+
+/* ─── ABOUT ─────────────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{font-size:1.05rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem}
+.about-text p strong{color:var(--text);font-weight:600}
+.interests-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem}
+.interest-pill{
+  display:flex;align-items:center;gap:.6rem;
+  background:var(--white);border:1px solid var(--border);
+  padding:.6rem 1rem;border-radius:10px;font-size:.85rem;font-weight:500;color:var(--text);
+  box-shadow:var(--card-shadow);transition:all .25s;
+}
+.interest-pill:hover{border-color:var(--blue2);color:var(--blue2);transform:translateY(-2px);box-shadow:var(--card-hover)}
+.interest-pill .icon{font-size:1.1rem}
+.about-highlight{
+  background:linear-gradient(135deg,var(--navy),#1a2f5e);
+  border-radius:20px;padding:2rem;color:var(--white);
+}
+.about-highlight h3{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.highlight-item{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1.2rem}
+.highlight-item:last-child{margin-bottom:0}
+.hi-icon{
+  width:36px;height:36px;min-width:36px;border-radius:8px;
+  background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.hi-text .hi-title{font-size:.9rem;font-weight:600;color:var(--white)}
+.hi-text .hi-sub{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.1rem}
+
+/* ─── EDUCATION TIMELINE ─────────────────────────────── */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--blue2),var(--accent));border-radius:1px;
+}
+.timeline-item{position:relative;margin-bottom:2.5rem}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{
+  position:absolute;left:-2.45rem;top:.4rem;
+  width:16px;height:16px;border-radius:50%;border:3px solid var(--blue2);
+  background:var(--white);transition:all .3s;
+}
+.timeline-item:hover .timeline-dot{background:var(--blue2);box-shadow:0 0 0 4px rgba(37,99,235,.2)}
+.timeline-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:1.6rem 1.8rem;box-shadow:var(--card-shadow);transition:all .3s;
+}
+.timeline-card:hover{box-shadow:var(--card-hover);transform:translateX(4px)}
+.tl-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem}
+.tl-degree{font-size:1.05rem;font-weight:700;color:var(--navy)}
+.tl-date{
+  font-size:.78rem;font-weight:600;color:var(--blue2);
+  background:#eff6ff;padding:.25rem .7rem;border-radius:100px;white-space:nowrap;
+}
+.tl-uni{font-size:.88rem;color:var(--blue2);font-weight:500;margin-bottom:.6rem}
+.tl-thesis{font-size:.88rem;color:var(--muted);margin-bottom:.5rem;line-height:1.6}
+.tl-thesis em{font-style:italic}
+.tl-gpa{font-size:.78rem;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:.3rem}
+.tl-gpa::before{content:'';width:6px;height:6px;border-radius:50%;background:#10b981}
+
+/* ─── EXPERIENCE ─────────────────────────────────────── */
+.exp-grid{display:flex;flex-direction:column;gap:1.5rem}
+.exp-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:1.8rem;box-shadow:var(--card-shadow);transition:all .3s;
+  border-left:4px solid transparent;
+}
+.exp-card:hover{box-shadow:var(--card-hover);border-left-color:var(--blue2)}
+.exp-card.active-role{border-left-color:var(--accent)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.3rem}
+.exp-title{font-size:1.05rem;font-weight:700;color:var(--navy)}
+.exp-badge{
+  font-size:.72rem;font-weight:700;letter-spacing:.05em;
+  padding:.25rem .7rem;border-radius:100px;
+}
+.badge-current{background:#dcfce7;color:#15803d}
+.badge-past{background:#f1f5f9;color:var(--muted)}
+.exp-org{font-size:.88rem;color:var(--blue2);font-weight:500;margin-bottom:1rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.exp-bullets li{
+  font-size:.9rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6;
+}
+.exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--blue2);font-size:.75rem;top:.1rem}
+
+/* ─── PUBLICATIONS ───────────────────────────────────── */
+.pub-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.pub-filter{
+  font-size:.8rem;font-weight:600;padding:.4rem 1rem;border-radius:100px;
+  border:1px solid var(--border);background:var(--white);color:var(--muted);
+  cursor:pointer;transition:all .2s;
+}
+.pub-filter.active,.pub-filter:hover{background:var(--blue2);color:var(--white);border-color:var(--blue2)}
+
+.pub-list{display:flex;flex-direction:column;gap:1rem}
+.pub-card{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:1.4rem 1.6rem;box-shadow:var(--card-shadow);transition:all .3s;
+  display:flex;gap:1.2rem;align-items:flex-start;
+}
+.pub-card:hover{box-shadow:var(--card-hover);transform:translateY(-2px)}
+.pub-card[data-type="journal"]{border-left:3px solid var(--blue2)}
+.pub-card[data-type="conference"]{border-left:3px solid var(--accent)}
+.pub-card[data-type="book"]{border-left:3px solid var(--accent2)}
+.pub-num{
+  font-size:.72rem;font-weight:700;color:var(--white);
+  background:var(--blue2);width:28px;height:28px;min-width:28px;
+  border-radius:6px;display:flex;align-items:center;justify-content:center;margin-top:.1rem;
+}
+.pub-card[data-type="conference"] .pub-num{background:var(--accent)}
+.pub-card[data-type="book"] .pub-num{background:var(--accent2)}
+.pub-body{flex:1}
+.pub-title{font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;line-height:1.4}
+.pub-authors{font-size:.82rem;color:var(--muted);margin-bottom:.4rem}
+.pub-authors strong{color:var(--text);font-weight:600}
+.pub-venue{font-size:.82rem;font-style:italic;color:var(--muted)}
+.pub-tag{
+  display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.05em;
+  padding:.15rem .5rem;border-radius:4px;margin-left:.5rem;vertical-align:middle;
+}
+.tag-pub{background:#dbeafe;color:#1d4ed8}
+.tag-rev{background:#fef3c7;color:#92400e}
+.tag-prep{background:#f1f5f9;color:var(--muted)}
+
+/* ─── VIDEOS ─────────────────────────────────────────── */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;grid-auto-rows:auto}
+.video-card{
+  border-radius:16px;overflow:hidden;background:var(--white);
+  border:1px solid var(--border);box-shadow:var(--card-shadow);transition:all .3s;
+}
+.video-card:hover{box-shadow:var(--card-hover);transform:translateY(-4px)}
+.video-thumb{
+  position:relative;width:100%;padding-top:56.25%;
+  background:linear-gradient(135deg,#0a1628,#1e3a6e);cursor:pointer;overflow:hidden;
+}
+.video-thumb .thumb-bg{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:.75rem;
+}
+.play-btn{
+  width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;
+  transition:all .3s;backdrop-filter:blur(4px);
+}
+.video-thumb:hover .play-btn{background:var(--blue2);border-color:var(--blue2);transform:scale(1.1)}
+.play-btn svg{fill:white;width:20px;height:20px;margin-left:3px}
+.video-thumb-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+.upload-hint{
+  position:absolute;bottom:.75rem;right:.75rem;
+  font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(6,182,212,.2);color:var(--accent);
+  border:1px solid rgba(6,182,212,.3);padding:.2rem .5rem;border-radius:4px;
+}
+.video-info{padding:1.1rem}
+.video-info h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;line-height:1.4}
+.video-info p{font-size:.8rem;color:var(--muted)}
+.video-info .video-meta{font-size:.72rem;color:var(--blue2);font-weight:600;margin-top:.5rem}
+
+/* ─── SKILLS ─────────────────────────────────────────── */
+.skills-container{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.skill-group{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:1.6rem;box-shadow:var(--card-shadow);transition:all .3s;
+}
+.skill-group:hover{box-shadow:var(--card-hover)}
+.skill-group-title{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:1.1rem;
+}
+.skill-group-icon{
+  width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;
+}
+.sg-blue{background:#dbeafe}
+.sg-purple{background:#ede9fe}
+.sg-cyan{background:#cffafe}
+.sg-green{background:#dcfce7}
+.sg-orange{background:#ffedd5}
+.sg-pink{background:#fce7f3}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-tag{
+  font-size:.78rem;font-weight:500;color:var(--muted);
+  background:var(--light);border:1px solid var(--border);
+  padding:.3rem .65rem;border-radius:6px;transition:all .2s;
+}
+.skill-tag:hover{background:#dbeafe;border-color:#bfdbfe;color:var(--blue2)}
+
+/* ─── AWARDS ─────────────────────────────────────────── */
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.award-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:1.6rem;box-shadow:var(--card-shadow);transition:all .3s;text-align:center;
+}
+.award-card:hover{box-shadow:var(--card-hover);transform:translateY(-4px)}
+.award-icon{font-size:2rem;margin-bottom:.8rem}
+.award-year{font-size:.78rem;font-weight:700;color:var(--blue2);letter-spacing:.08em;margin-bottom:.4rem}
+.award-title{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.4rem;line-height:1.3}
+.award-org{font-size:.8rem;color:var(--muted)}
+
+/* ─── CONTACT ────────────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
+.contact-items{display:flex;flex-direction:column;gap:1rem}
+.contact-item{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--white);border:1px solid var(--border);border-radius:12px;
+  padding:1rem 1.2rem;box-shadow:var(--card-shadow);transition:all .3s;text-decoration:none;
+}
+.contact-item:hover{box-shadow:var(--card-hover);transform:translateX(4px)}
+.ci-icon{
+  width:40px;height:40px;min-width:40px;border-radius:10px;background:#eff6ff;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.ci-text .ci-label{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.ci-text .ci-val{font-size:.9rem;font-weight:600;color:var(--navy)}
+
+.contact-map{
+  background:linear-gradient(135deg,var(--navy),#1a3060);
+  border-radius:20px;padding:2.5rem;color:var(--white);
+}
+.contact-map h3{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.contact-map p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:1rem}
+.grant-badges{display:flex;flex-direction:column;gap:.5rem;margin-top:1.5rem}
+.grant-badge{
+  font-size:.78rem;font-weight:500;color:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  padding:.4rem .8rem;border-radius:8px;display:flex;align-items:center;gap:.5rem;
+}
+.grant-badge::before{content:'🏛';font-size:.9rem}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer{
+  background:var(--navy);color:rgba(255,255,255,.4);
+  text-align:center;padding:2rem;font-size:.8rem;
+}
+footer a{color:rgba(255,255,255,.6);text-decoration:none}
+footer a:hover{color:var(--accent)}
+
+/* ─── MOBILE NAV ─────────────────────────────────────── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+  .hero-right{display:none}
+  .hero-h1{font-size:2.4rem}
+  .about-grid{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:1fr 1fr}
+  .awards-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .skills-container{grid-template-columns:1fr}
+  .interests-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links,.nav-cv{display:none}
+  .hamburger{display:flex}
+  .video-grid{grid-template-columns:1fr}
+  .awards-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .hero-h1{font-size:2rem}
+  .section-title{font-size:1.7rem}
+}
+
+/* Mobile nav open state */
+nav.mobile-open .nav-links{
+  display:flex;flex-direction:column;position:fixed;
+  top:64px;left:0;right:0;background:var(--white);
+  padding:1.5rem 2rem;border-bottom:1px solid var(--border);
+  box-shadow:0 8px 24px rgba(0,0,0,.1);gap:1.2rem;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Sima <span>Ghafoori</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#videos">Media</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cv" href="SimaGhafoori_CV_2026.pdf" target="_blank">Download CV</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Ph.D. Candidate · Electrical Engineering</div>
+      <h1 class="hero-h1">
+        <span class="name-accent">Sima Ghafoori</span><br>
+        Neurorobotics<br>Researcher
+      </h1>
+      <p class="hero-subtitle">Translational Neurorobotics Lab</p>
+      <p class="hero-affil">University of Rhode Island · Kingston, RI, USA</p>
+      <p class="hero-bio">
+        Building the bridge between <strong style="color:rgba(255,255,255,.85)">brain signals and robotic systems</strong>
+        — developing real-time, biosignal-driven platforms for upper-limb motor rehabilitation.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#publications">View Publications</a>
+        <a class="btn-outline" href="#contact">Get in Touch</a>
+      </div>
+      <div class="hero-social">
+        <a href="mailto:Sima.ghafoori@uri.edu" title="Email">✉</a>
+        <a href="https://www.linkedin.com/in/sima-ghafoori-b8a799206/" target="_blank" title="LinkedIn">in</a>
+        <a href="https://github.com/SGh-BME" target="_blank" title="GitHub">gh</a>
+        <a href="https://scholar.google.com/citations?hl=en&user=HkmtnJEAAAAJ" target="_blank" title="Google Scholar">gs</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div style="display:flex;justify-content:center;margin-bottom:.5rem">
+        <div style="width:190px;height:190px;border-radius:50%;overflow:hidden;border:3px solid rgba(6,182,212,0.5);box-shadow:0 0 0 7px rgba(6,182,212,0.1)">
+          <img src="profile.jpg" alt="Sima Ghafoori" style="width:100%;height:100%;object-fit:cover;object-position:center top"/>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="num">9<span>+</span></div>
+          <div class="label">Publications</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">5<span>+</span></div>
+          <div class="label">Years Research</div>
+
+        </div>
+      </div>
+      <div class="research-card">
+        <h3>Research Focus</h3>
+        <div class="research-tags">
+          <span>Rehabilitation Robotics</span>
+          <span>EEG / EMG</span>
+          <span>Brain-Computer Interface</span>
+          <span>Adaptive Control</span>
+          <span>State Estimation</span>
+          <span>Deep Learning</span>
+          <span>Signal Processing</span>
+          <span>Human-Robot Interaction</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Who I Am</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in fade-in-delay-1">
+        <p>I'm a Ph.D. researcher in Electrical Engineering at the <strong>University of Rhode Island</strong>, working in the Translational Neurorobotics Lab under Dr. Reza Abiri.</p>
+        <p>My research focuses on real-time robotic systems that respond to human biosignals — integrating <strong>EEG/EMG acquisition</strong>, force sensing, and embedded hardware into closed-loop platforms for upper-limb motor rehabilitation.</p>
+        <p>I'm broadly interested in the translation of neuroscience-informed signal processing into usable assistive technology — making rehabilitation robotics smarter, more adaptive, and more human.</p>
+        <div class="interests-grid" style="margin-top:1.5rem">
+          <div class="interest-pill"><span class="icon">🤖</span> Assistive Robotics</div>
+          <div class="interest-pill"><span class="icon">🧠</span> Brain-Computer Interfaces</div>
+          <div class="interest-pill"><span class="icon">⚡</span> Adaptive Control</div>
+          <div class="interest-pill"><span class="icon">📡</span> Signal Processing</div>
+          <div class="interest-pill"><span class="icon">🔬</span> Neurorehabilitation</div>
+          <div class="interest-pill"><span class="icon">💡</span> Deep Learning</div>
+        </div>
+      </div>
+      <div class="about-highlight fade-in fade-in-delay-2">
+        <h3>Current Work</h3>
+        <div class="highlight-item">
+          <div class="hi-icon">🦾</div>
+          <div class="hi-text">
+            <div class="hi-title">Biosignal-Driven Robotic Control</div>
+            <div class="hi-sub">EEG/EMG → real-time robot commands via DQN</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">📐</div>
+          <div class="hi-text">
+            <div class="hi-title">Adaptive Admittance Control</div>
+            <div class="hi-sub">Geometry-aware framework for 4-DOF rehab arm</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">🎛️</div>
+          <div class="hi-text">
+            <div class="hi-title">Extended Kalman Filter</div>
+            <div class="hi-sub">Sensorless state estimation for magnetic actuator</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">🌐</div>
+          <div class="hi-text">
+            <div class="hi-title">Cross-Frequency EEG Analysis</div>
+            <div class="hi-sub">Bispectrum & phase coupling in grasp planning</div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.5rem">Funded by</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.6)">NSF Award #2245558 · NIH P20GM103430</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Academic Background</div>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item fade-in fade-in-delay-1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <span class="tl-degree">Ph.D. in Electrical Engineering</span>
+            <span class="tl-date">Jan. 2023 – 2027 (expected)</span>
+          </div>
+          <div class="tl-uni">University of Rhode Island · Kingston, RI, USA</div>
+          <div class="tl-thesis"><em>Dissertation:</em> Design and Control of Biosignal-Based Planar Robotic Platforms for Upper-Limb Motor Rehabilitation</div>
+          <div class="tl-thesis" style="margin-bottom:.5rem">Advisor: Dr. Reza Abiri · Translational Neurorobotics Lab</div>
+          <span class="tl-gpa">GPA: 3.84 / 4.0</span>
+        </div>
+      </div>
+      <div class="timeline-item fade-in fade-in-delay-2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <span class="tl-degree">M.S. in Electrical Engineering</span>
+            <span class="tl-date">Sep. 2019 – Dec. 2021</span>
+          </div>
+          <div class="tl-uni">Shahid Beheshti University of Medical Sciences · Tehran, Iran</div>
+          <div class="tl-thesis"><em>Thesis:</em> Predicting Conversion from Mild Cognitive Impairment to Alzheimer's Disease by Integrating Functional MRI and Clinical Data Using Deep Learning Methods</div>
+          <span class="tl-gpa">GPA: 4.0 / 4.0</span>
+        </div>
+      </div>
+      <div class="timeline-item fade-in fade-in-delay-3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <span class="tl-degree">B.Sc. in Electrical Engineering</span>
+            <span class="tl-date">Sep. 2015 – Sep. 2019</span>
+          </div>
+          <div class="tl-uni">University of Isfahan · Isfahan, Iran</div>
+          <div class="tl-thesis"><em>Senior Project:</em> Design of an Online Computer-Aided Diagnostic System for Seizure Prediction Using an Optimal Number of Electrodes</div>
+          <span class="tl-gpa">GPA: 3.64 / 4.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">What I've Done</div>
+      <h2 class="section-title">Research Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card active-role fade-in fade-in-delay-1">
+        <div class="exp-header">
+          <span class="exp-title">Graduate Research Assistant (Ph.D.)</span>
+          <span class="exp-badge badge-current">Current · Jan. 2023 – Present</span>
+        </div>
+        <div class="exp-org">Translational Neurorobotics Lab, University of Rhode Island · Kingston, RI</div>
+        <ul class="exp-bullets">
+          <li>Enhanced stability and precision of a magnetically actuated upper-limb rehabilitation platform by implementing a closed-loop Extended Kalman Filter (EKF) for real-time, sensorless state estimation and control</li>
+          <li>Developed a Python interface for real-time visualization and trajectory control of the platform via Arduino-based feedback</li>
+          <li>Advanced motor intention decoding by constructing brain-signal feature-extraction pipelines based on bispectrum, cross-bispectrum, and phase-coupling metrics</li>
+          <li>Designed a real-time closed-loop robotics software framework integrating EEG/EMG acquisition, force/torque sensing, and a 4-DOF linkage robot for end-to-end data collection and control</li>
+          <li>Implemented a biosignal-driven assistive control algorithm that decodes human intent from EEG/EMG to command the robot in real time</li>
+          <li>Engineered a physics-based PyBullet simulation of a 4-DOF rehabilitation robot interfaced with a custom load-cell joystick, enabling interactive force-controlled human-in-the-loop testing</li>
+          <li>Developed an adaptive admittance control framework for the 4-DOF rehabilitation robot</li>
+          <li>Contributed to signal-processing pipelines integrating wavelet, ICA, and feature extraction for comparative analysis of EEG and tEEG signal performance in movement decoding</li>
+          <li>Collaborated on a self-training Deep Q-Network (DQN) framework that enhances biosignal-driven robotic control accuracy under noisy input conditions</li>
+        </ul>
+      </div>
+      <div class="exp-card fade-in fade-in-delay-2">
+        <div class="exp-header">
+          <span class="exp-title">Graduate Research Intern</span>
+          <span class="exp-badge badge-past">2021 – 2022</span>
+        </div>
+        <div class="exp-org">School of Electrical and Computer Engineering, University of Tehran · Tehran, Iran</div>
+        <ul class="exp-bullets">
+          <li>Explored advanced biosignal-processing techniques and their integration with ML/DL algorithms to enhance robotic control and human-robot interaction</li>
+        </ul>
+      </div>
+      <div class="exp-card fade-in fade-in-delay-3">
+        <div class="exp-header">
+          <span class="exp-title">Graduate Research Assistant (M.S.)</span>
+          <span class="exp-badge badge-past">2019 – 2021</span>
+        </div>
+        <div class="exp-org">Department of Biomedical Engineering and Medical Physics, SBMU · Tehran, Iran</div>
+        <ul class="exp-bullets">
+          <li>Processed and analyzed fMRI/MRI data with deep learning architectures (CNN, LSTM, CNN-LSTM) for early Alzheimer's detection</li>
+          <li>Developed Arduino-based systems integrating ECG signals, Bluetooth, and ESP8266 modules for biosignal acquisition, cloud transmission, and ML classification</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Research Output</div>
+      <h2 class="section-title">Publications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="pub-filters fade-in">
+      <button class="pub-filter active" onclick="filterPubs('all',this)">All</button>
+      <button class="pub-filter" onclick="filterPubs('journal',this)">Journal Articles</button>
+      <button class="pub-filter" onclick="filterPubs('conference',this)">Conference</button>
+      <button class="pub-filter" onclick="filterPubs('book',this)">Book Chapters</button>
+    </div>
+    <div class="pub-list" id="pubList">
+
+      <div class="pub-card" data-type="journal">
+        <div class="pub-num">J1</div>
+        <div class="pub-body">
+          <div class="pub-title">A Novel Seamless Magnetic-Based Actuating Mechanism for End-Effector-Based Robotic Rehabilitation Platforms</div>
+          <div class="pub-authors"><strong>S. Ghafoori</strong>, A. Rabiee, M. Jouaneh, and R. Abiri</div>
+          <div class="pub-venue">IEEE Robotics and Automation Letters, vol. 10, pp. 4516–4523, 2025 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="journal">
+        <div class="pub-num">J2</div>
+        <div class="pub-body">
+          <div class="pub-title">A Comparative Study of Conventional and Tripolar EEG for High-Performance Reach-to-Grasp BCI Systems</div>
+          <div class="pub-authors">A. Rabiee, <strong>S. Ghafoori</strong>, A. Cetera, W. Besio, and R. Abiri</div>
+          <div class="pub-venue">IEEE Transactions on Biomedical Engineering, 2025 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="journal">
+        <div class="pub-num">J3</div>
+        <div class="pub-body">
+          <div class="pub-title">Cross-Frequency Bispectral EEG Analysis of Reach-to-Grasp Planning and Execution</div>
+          <div class="pub-authors"><strong>S. Ghafoori</strong>, A. Cetera, A. Rabiee, M. H. Farhadi, R. Singh, M. Furmanek, Y. Shahriari, and R. Abiri</div>
+          <div class="pub-venue">Computers in Biology and Medicine, 2026 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="journal">
+        <div class="pub-num">J5</div>
+        <div class="pub-body">
+          <div class="pub-title">Macroscopic EEG Reveals Discriminative Low-Frequency Oscillations in Plan-to-Grasp Visuomotor Tasks</div>
+          <div class="pub-authors">A. Cetera, <strong>S. Ghafoori</strong>, A. Rabiee, Y. Shahriari, R. Abiri</div>
+          <div class="pub-venue">Journal of Neural Engineering, 2026 <span class="pub-tag tag-rev">Under Revision</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="journal">
+        <div class="pub-num">J6</div>
+        <div class="pub-body">
+          <div class="pub-title">Geometry-Aware Adaptive Admittance Control for Upper-Limb Rehabilitation Robotics</div>
+          <div class="pub-authors"><strong>S. Ghafoori</strong>, et al.</div>
+          <div class="pub-venue">Manuscript in preparation, 2026 <span class="pub-tag tag-prep">In Preparation</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="conference">
+        <div class="pub-num">C1</div>
+        <div class="pub-body">
+          <div class="pub-title">Bispectrum Analysis of Noninvasive EEG Signals Discriminates Complex and Natural Grasp Types</div>
+          <div class="pub-authors"><strong>S. Ghafoori</strong>, A. Rabiee, A. Cetera, and R. Abiri</div>
+          <div class="pub-venue">IEEE Engineering in Medicine and Biology Society (EMBC), 2024 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="conference">
+        <div class="pub-num">C2</div>
+        <div class="pub-body">
+          <div class="pub-title">Wavelet Analysis of Noninvasive EEG Signals Discriminates Complex and Natural Grasp Types</div>
+          <div class="pub-authors">A. Rabiee, <strong>S. Ghafoori</strong>, A. Cetera, and R. Abiri</div>
+          <div class="pub-venue">IEEE Engineering in Medicine and Biology Society (EMBC), 2024 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="conference">
+        <div class="pub-num">C3</div>
+        <div class="pub-body">
+          <div class="pub-title">Classification of Emerging Neural Activity from Planning to Grasp Execution using a Novel EEG-Based BCI Platform</div>
+          <div class="pub-authors">A. Cetera, A. Rabiee, <strong>S. Ghafoori</strong>, and R. Abiri</div>
+          <div class="pub-venue">IEEE Engineering in Medicine and Biology Society (EMBC), 2024 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="conference">
+        <div class="pub-num">C4</div>
+        <div class="pub-body">
+          <div class="pub-title">Streams: An Assistive Multimodal AI Framework for Empowering Biosignal-Based Robotic Controls</div>
+          <div class="pub-authors">A. Rabiee, <strong>S. Ghafoori</strong>, X. Bai, S. Ostadabbas, and R. Abiri</div>
+          <div class="pub-venue">Artificial Intelligence, Robotics and Control (AIRC), 2025 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card" data-type="book">
+        <div class="pub-num">B1</div>
+        <div class="pub-body">
+          <div class="pub-title">Human-Centered Shared Autonomy for Motor Planning, Learning, and Control Applications</div>
+          <div class="pub-authors">M. H. Farhadi, A. Rabiee, <strong>S. Ghafoori</strong>, A. Cetera, W. Xu, and R. Abiri</div>
+          <div class="pub-venue"><em>Bridging the Gap between Mind and Machine</em>, Springer Nature Switzerland, 2025, pp. 259–297 <span class="pub-tag tag-pub">Published</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS / MEDIA -->
+<section id="videos" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Demos & Talks</div>
+      <h2 class="section-title">Research Media</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="video-grid">
+
+      <div class="video-card fade-in fade-in-delay-1">
+        <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;background:#0a1628;cursor:pointer;overflow:hidden" onclick="playLocalVideo(this)">
+          <video id="vid1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none" controls src="EKF_1Dplanar_magnet_720_compressed.mp4"></video>
+          <div class="thumb-bg" id="vid1-cover" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-thumb-label">Click to play</div>
+          </div>
+        </div>
+        <div class="video-info">
+          <h3>Seamless Magnetic-Based Rehabilitation Platform</h3>
+          <p>EKF-based sensorless state estimation and real-time trajectory control of the magnetically actuated upper-limb platform</p>
+          <div class="video-meta">IEEE Robotics and Automation Letters · 2025</div>
+        </div>
+      </div>
+
+      <div class="video-card fade-in fade-in-delay-2">
+        <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;background:linear-gradient(135deg,#0a1628,#1e3a6e);overflow:hidden">
+          <div class="thumb-bg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem">
+            <div class="play-btn" style="opacity:.45;cursor:default">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-thumb-label">Video coming soon</div>
+          </div>
+          <div class="upload-hint">Coming Soon</div>
+        </div>
+        <div class="video-info">
+          <h3>Streams: Multimodal AI for Biosignal-Based Robotic Control</h3>
+          <p>Assistive multimodal AI framework empowering biosignal-driven robot control — AIRC 2025</p>
+          <div class="video-meta">Conference Paper · AIRC 2025</div>
+        </div>
+      </div>
+
+
+
+      <div class="video-card fade-in fade-in-delay-1">
+        <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;background:linear-gradient(135deg,#0a1628,#1e3a6e);overflow:hidden">
+          <div class="thumb-bg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem">
+            <div class="play-btn" style="opacity:.45;cursor:default">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-thumb-label">Video coming soon</div>
+          </div>
+          <div class="upload-hint">Coming Soon</div>
+        </div>
+        <div class="video-info">
+          <h3>Human-in-the-Loop Simulation</h3>
+          <p>PyBullet simulation of the HitBot robot controlled via a real force-sensing joystick using geometry-aware admittance control</p>
+          <div class="video-meta">Simulation Demo · 2026</div>
+        </div>
+      </div>
+
+      <div class="video-card fade-in fade-in-delay-2">
+        <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;background:linear-gradient(135deg,#0a1628,#1e3a6e);overflow:hidden">
+          <div class="thumb-bg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem">
+            <div class="play-btn" style="opacity:.45;cursor:default">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-thumb-label">Video coming soon</div>
+          </div>
+          <div class="upload-hint">Coming Soon</div>
+        </div>
+        <div class="video-info">
+          <h3>Sim-to-Real: HitBot with Geometry-Aware Admittance Control</h3>
+          <p>The actual HitBot robot controlled with the same force sensor and geometry-aware admittance controller — transferring directly from simulation to hardware</p>
+          <div class="video-meta">Sim-to-Real Demo · 2026</div>
+        </div>
+      </div>
+
+      <div class="video-card fade-in fade-in-delay-3">
+        <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;background:linear-gradient(135deg,#0a1628,#1e3a6e);overflow:hidden">
+          <div class="thumb-bg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem">
+            <div class="play-btn" style="opacity:.45;cursor:default">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-thumb-label">Video coming soon</div>
+          </div>
+          <div class="upload-hint">Coming Soon</div>
+        </div>
+        <div class="video-info">
+          <h3>EEG/EMG-Driven Robot Control</h3>
+          <p>Decoding motor intent from EEG and EMG signals to command the robot in real time — closing the loop between brain, body, and machine</p>
+          <div class="video-meta">Research Demo · 2026</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Technical Expertise</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-container">
+      <div class="skill-group fade-in fade-in-delay-1">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-blue">💻</div>Programming
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in fade-in-delay-2">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-purple">🧠</div>AI / Machine Learning
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Keras</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Reinforcement Learning</span>
+          <span class="skill-tag">CNN / LSTM</span>
+          <span class="skill-tag">DQN</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in fade-in-delay-1">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-cyan">🤖</div>Robotics & Control
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Adaptive Control</span>
+          <span class="skill-tag">Admittance Control</span>
+          <span class="skill-tag">Real-Time Control</span>
+          <span class="skill-tag">Path Planning</span>
+          <span class="skill-tag">System Identification</span>
+          <span class="skill-tag">Extended Kalman Filter</span>
+          <span class="skill-tag">PyBullet</span>
+          <span class="skill-tag">Simulink</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in fade-in-delay-2">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-green">📡</div>Signal Processing
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">EEG / EMG</span>
+          <span class="skill-tag">ICA / PCA</span>
+          <span class="skill-tag">Bispectrum</span>
+          <span class="skill-tag">Wavelet</span>
+          <span class="skill-tag">STFT</span>
+          <span class="skill-tag">PSD (Welch)</span>
+          <span class="skill-tag">MNE</span>
+          <span class="skill-tag">NumPy / SciPy</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in fade-in-delay-1">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-orange">🔧</div>Hardware & Tools
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">ESP8266</span>
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">Altium</span>
+          <span class="skill-tag">LTSpice</span>
+          <span class="skill-tag">DipTrace</span>
+          <span class="skill-tag">Linux (Ubuntu)</span>
+          <span class="skill-tag">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in fade-in-delay-2">
+        <div class="skill-group-title">
+          <div class="skill-group-icon sg-pink">🌐</div>Languages
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">English — Professional</span>
+          <span class="skill-tag">Persian — Native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Awards & Leadership</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card fade-in fade-in-delay-1">
+        <div class="award-icon">🏆</div>
+        <div class="award-year">2026</div>
+        <div class="award-title">Outstanding Researcher Award</div>
+        <div class="award-org">ECBE Graduate Student Poster Competition, University of Rhode Island</div>
+      </div>
+      <div class="award-card fade-in fade-in-delay-2">
+        <div class="award-icon">🥇</div>
+        <div class="award-year">2024</div>
+        <div class="award-title">Best Poster Award</div>
+        <div class="award-org">ECBE Graduate Student Poster Competition, University of Rhode Island</div>
+      </div>
+      <div class="award-card fade-in fade-in-delay-3">
+        <div class="award-icon">🎓</div>
+        <div class="award-year">Ongoing</div>
+        <div class="award-title">Mentorship & Leadership</div>
+        <div class="award-org">Mentoring capstone teams & leading high school robotics/neurotechnology internship programs at URI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in fade-in-delay-1">
+        <p class="contact-intro">
+          I'm always open to discussing research collaborations, speaking opportunities, or questions about my work in neurorobotics and rehabilitation engineering.
+        </p>
+        <div class="contact-items">
+          <a class="contact-item" href="mailto:Sima.ghafoori@uri.edu">
+            <div class="ci-icon">✉️</div>
+            <div class="ci-text">
+              <div class="ci-label">Email</div>
+              <div class="ci-val">Sima.ghafoori@uri.edu</div>
+            </div>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/sima-ghafoori-b8a799206/" target="_blank">
+            <div class="ci-icon">💼</div>
+            <div class="ci-text">
+              <div class="ci-label">LinkedIn</div>
+              <div class="ci-val">sima-ghafoori-b8a799206</div>
+            </div>
+          </a>
+          <a class="contact-item" href="https://github.com/SGh-BME" target="_blank">
+            <div class="ci-icon">🐙</div>
+            <div class="ci-text">
+              <div class="ci-label">GitHub</div>
+              <div class="ci-val">github.com/SGh-BME</div>
+            </div>
+          </a>
+          <a class="contact-item" href="https://scholar.google.com/citations?hl=en&user=HkmtnJEAAAAJ" target="_blank">
+            <div class="ci-icon">🎓</div>
+            <div class="ci-text">
+              <div class="ci-label">Google Scholar</div>
+              <div class="ci-val">View all publications</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-map fade-in fade-in-delay-2">
+        <h3>Affiliation</h3>
+        <p><strong style="color:white">Translational Neurorobotics Lab</strong><br>
+        Department of Electrical, Computer &amp; Biomedical Engineering<br>
+        University of Rhode Island<br>
+        Kingston, RI 02881, USA</p>
+        <div class="grant-badges">
+          <div class="grant-badge">NSF Award #2245558</div>
+          <div class="grant-badge">NIH Grant P20GM103430</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Sima Ghafoori · <a href="mailto:Sima.ghafoori@uri.edu">Sima.ghafoori@uri.edu</a></p>
+</footer>
+
+<script>
+// ── Scroll spy & nav ──────────────────────────────────
+const nav = document.getElementById('nav');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+});
+
+// ── Intersection observer for fade-in ────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── Publication filter ────────────────────────────────
+function filterPubs(type, btn) {
+  document.querySelectorAll('.pub-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-card').forEach(card => {
+    const show 
